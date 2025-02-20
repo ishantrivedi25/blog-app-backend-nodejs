@@ -7,6 +7,8 @@ import cors from "cors";
 
 import userRoutes from "./routes/user.route";
 import authRoutes from "./routes/auth.route";
+import postRoutes from "./routes/post.route";
+import commentRoutes from "./routes/comment.route";
 import { notFound } from "./middlewares/notFound";
 import { errorHandler } from "./middlewares/errorHandler";
 import rateLimiter from "./middlewares/rateLimiter";
@@ -42,6 +44,8 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/post", postRoutes);
+app.use("/api/v1/comment", commentRoutes);
 
 // Error Handling
 app.use(notFound);
