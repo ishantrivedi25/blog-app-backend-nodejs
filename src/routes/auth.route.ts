@@ -1,11 +1,17 @@
 import express from "express";
 
 import { google, signin, signup } from "../controllers/auth.controller";
+import { validateData } from "../middlewares/validateData";
+import {
+  signupSchema,
+  signinSchema,
+  googleAuthSchema,
+} from "../schemas/authSchemas";
 
 const router = express.Router();
 
-router.post("/signup", signup);
-router.post("/signin", signin);
-router.post("/google", google);
+router.post("/signup", validateData(signupSchema), signup);
+router.post("/signin", validateData(signinSchema), signin);
+router.post("/google", validateData(googleAuthSchema), google);
 
 export default router;
