@@ -1,14 +1,12 @@
 import { z } from "zod";
 
-// Schema for creating a new comment
 export const createCommentSchema = z.object({
   body: z.object({
     content: z
       .string()
       .min(1, "Content cannot be empty")
       .max(500, "Content is too long"),
-    postId: z.string().uuid("Invalid postId format"),
-    userId: z.string().uuid("Invalid userId format"),
+    postId: z.string().regex(/^[0-9a-f]{24}$/, "Invalid postId format"),
   }),
 });
 
@@ -18,14 +16,12 @@ export const getPostCommentsSchema = z.object({
   }),
 });
 
-// Schema for liking a comment
 export const likeCommentSchema = z.object({
   params: z.object({
     commentId: z.string().min(1, "commentId is required"),
   }),
 });
 
-// Schema for editing a comment
 export const editCommentSchema = z.object({
   params: z.object({
     commentId: z.string().min(1, "commentId is required"),
@@ -38,14 +34,12 @@ export const editCommentSchema = z.object({
   }),
 });
 
-// Schema for deleting a comment
 export const deleteCommentSchema = z.object({
   params: z.object({
     commentId: z.string().min(1, "commentId is required"),
   }),
 });
 
-// Schema for fetching comments with pagination and sorting
 export const getCommentsSchema = z.object({
   query: z.object({
     startIndex: z

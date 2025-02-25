@@ -9,15 +9,13 @@ export const createComment = async (
   next: NextFunction
 ) => {
   try {
-    const { content, postId, userId } = req.body;
+    const { content, postId } = req.body;
 
-    if (userId.toString() !== req.user?.id.toString()) {
-      return next(
-        createErrorResponse(403, "You are not allowed to create this comment")
-      );
-    }
-
-    const newComment = new Comment({ content, postId, userId });
+    const newComment = new Comment({
+      content,
+      postId,
+      userId: req.user?.id?.toString(),
+    });
     await newComment.save();
 
     res.status(200).json({
