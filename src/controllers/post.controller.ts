@@ -58,7 +58,7 @@ export const getPosts = async (
   try {
     const startIndex = parseInt(req.query.startIndex as string) || 0;
     const limit = parseInt(req.query.limit as string) || 9;
-    const sortDirection = req.query.order === "asc" ? 1 : -1;
+    const sortDirection = req.query.sort === "asc" ? 1 : -1;
 
     const queryFilters = {
       ...(req.query.userId && { userId: req.query.userId }),
