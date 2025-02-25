@@ -10,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.post("/signup", validateData(signupSchema), signup);
 router.post("/signin", validateData(signinSchema), signin);
+router.post("/signup", validateData(signupSchema), signup);
 router.post("/google", validateData(googleAuthSchema), google);
 
 export default router;

@@ -77,6 +77,7 @@ export const signin = async (
       .cookie("access_token", token, {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: "strict",
       })
       .json({ status: "success", data: rest, message: "Signin successful" });
   } catch (error) {
@@ -121,6 +122,7 @@ export const google = async (
       .cookie("access_token", token, {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: "strict",
       })
       .json({ status: "success", data: rest, message: "Signin successful" });
   } catch (error) {
