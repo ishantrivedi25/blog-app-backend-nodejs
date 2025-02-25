@@ -30,7 +30,12 @@ mongoose
 // Middleware
 app.use(helmet()); // Security Headers
 app.use(cookieParser());
-app.use(cors()); // Enable CORS
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 app.use(express.json()); // JSON Parser
 app.use(express.urlencoded({ extended: true })); // URL Encoded Parser
 app.use(rateLimiter);
